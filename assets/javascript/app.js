@@ -28,7 +28,7 @@ function getGify(event) {
   console.log(event.target);
   var subject = $(event.target).text();
   console.log(subject);
-  var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + subject + "&api_key=GScwovCo30gmvtviTDU5g1XUX9G1aC3y&limit=5";
+  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + subject + "&api_key=GScwovCo30gmvtviTDU5g1XUX9G1aC3y&limit=5";
   
   $.ajax({
   url: queryURL,
