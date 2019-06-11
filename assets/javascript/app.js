@@ -12,13 +12,16 @@ for(i=0; i<= topics.length -1; i++) {
 // var subject =$("#movie-input").val();
 
 // var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + subject + "&api_key=GScwovCo30gmvtviTDU5g1XUX9G1aC3y&limit=5";
-function addButton() {
-  console.log("add button was clicked");
-  var newBtn = $("<button>");
-  var inputText = $(".form-input").val();
-  newBtn.text(inputText);
-  newBtn.addClass("gif-button hvr-ripple-out");
-  $("#el-three").append(newBtn);
+
+
+function imageAnimate(e){
+  if($(this).attr("data-state") == "still") {
+    $(this).attr("src", $(this).attr("data-animate"));
+    $(this).attr("data-state", "animated") ;
+  } else {
+    $(this).attr("src", $(this).attr("data-still"));;
+    $(this).attr("data-state", "still");
+  };
 }
 
 function getGify(event) {
@@ -31,22 +34,44 @@ function getGify(event) {
   url: queryURL,
   method: "GET"
    }).then(function(response) {
-     console.log(response.data[0].images.fixed_height_still.url);
+     console.log(response.data[0]);
      for(i=0; i<= response.data.length-1; i++) {
       var img = $("<img>");
+      var imgBox = $("<div>");
+      var imgStats =$("<div>");
+      imgBox.addClass("image-box");
+      imgStats.addClass("image-stats");
       img.addClass("gif");
       img.attr("src", response.data[i].images.fixed_height_still.url);
       img.attr("data-still", response.data[i].images.fixed_height_still.url);
       img.attr("data-animate", response.data[i].images.fixed_height.url);
       img.attr("data-state", "still");
-      $(".image-container").prepend(img);
+      imgStats.text("Rated: " + response.data[i].rating)
+      imgBox.append(img);
+      imgBox.append(imgStats);
+      $(".images-container").prepend(imgBox);
       console.log(img);
      }
-     
    })
+   
   }
 
+
+
+  $(".form-button").on('click', addButton);   
   
+  function addButton() {
+    
+    console.log("add button was clicked");
+    var newBtn = $("<button>");
+    var inputText = $(".form-input").val();
+    newBtn.text(inputText);
+    newBtn.addClass("gif-button hvr-ripple-out");
+    $("#el-three").append(newBtn);
+    e.preventDefault();
+  }
+
+  $(document).on('click', ".gif", imageAnimate);    
  
 
 $(document).on("mousedown", ".gif-button", function(event) {
@@ -98,6 +123,6 @@ $(document).on("mousedown", ".gif-button", function(event) {
   };
 });
 
-$(".form-button").on('click', addButton);   
+
 
 // $(document).on("click", ".gif-button", getGify);

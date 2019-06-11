@@ -215,11 +215,24 @@ body {
   display: grid;
   grid-template-columns: 22% 22% 22% 22%;
   grid-template-rows: 25vh 25vh 25vh 25vh;
-  padding: 15px;
+ 
   
 }
 
 .gif {
   height: 100px;
   width: 150px;
+}
+
+.image-box {
+  display: inline-block;
+  margin-left: 10px;
+  margin-top: 10px;
+  height: 125px;
+  border: 1px solid rgb(238, 238, 238);
+}
+
+.image-stats{
+  text-align: center;
+  height: 20px;
 }
