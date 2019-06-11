@@ -60,7 +60,7 @@ function getGify(event) {
 
   $(".form-button").on('click', addButton);   
   
-  function addButton() {
+  function addButton(e) {
     
     console.log("add button was clicked");
     var newBtn = $("<button>");
