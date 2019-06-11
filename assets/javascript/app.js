@@ -1,6 +1,6 @@
 console.log("connected");
 
-topics= ["octopus","girrafe", "fox", "armadillo", "elephant", "bill murray", "morty", "puppies", "kitty", "ducks"];
+topics= ["octopus","giraffe", "fox", "armadillo", "elephant", "bill murray", "morty", "puppies", "kitty", "ducks"];
 
 for(i=0; i<= topics.length -1; i++) {
   var button = $("<button>");
